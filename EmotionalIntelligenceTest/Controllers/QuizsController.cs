@@ -9,9 +9,12 @@ using EmotionalIntelligenceTest.Models;
 using Microsoft.AspNetCore.Http;
 using System.Drawing;
 using System.Drawing.Imaging;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 
 namespace EmotionalIntelligenceTest.Controllers
 {
+    [TestClass]
     public class QuizsController : Controller
     {
         private  ApplicationDBContext _context = new ApplicationDBContext();
@@ -24,7 +27,7 @@ namespace EmotionalIntelligenceTest.Controllers
         //[Route("Index")]
         //[Route("")]
         //[Route("~/")]
-
+        [TestMethod]
         public IActionResult Index()
         {
             ViewBag.Question = _context.Questions.ToList();
@@ -40,6 +43,7 @@ namespace EmotionalIntelligenceTest.Controllers
             int score = 0;
             Byte[] img = null;
             string[] questionIds = iformcollection["QuestionID"];
+            Assert.IsNotNull(questionIds);
             var question = _context.Questions.ToList() ;  
           foreach (var QuestionID in questionIds)
             {
@@ -52,7 +56,8 @@ namespace EmotionalIntelligenceTest.Controllers
                         int id = Convert.ToInt32(QuestionID);
                         score++;
                         img = question[id - 1].image;
-                     
+                        Assert.IsNotNull(img);
+
                         Image x = (Bitmap)new ImageConverter().ConvertFrom(img);
                         ViewBag.image = x;
 

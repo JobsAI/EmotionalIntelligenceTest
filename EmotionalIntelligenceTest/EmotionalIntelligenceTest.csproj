@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -30,12 +30,20 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="3.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.2" />
+    <PackageReference Include="Microsoft.VisualStudio.UnitTesting" Version="11.0.50727.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.1.0" />
     <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 
