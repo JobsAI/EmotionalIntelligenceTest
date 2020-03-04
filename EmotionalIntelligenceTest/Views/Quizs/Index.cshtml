@@ -1,13 +1,13 @@
-﻿@{ 
+﻿@{
     Layout = null;
 }
-@{ 
+@{
     var endTime = DateTime.UtcNow.AddSeconds(65);
     var timeRemaining = TimeSpan.FromTicks(endTime.Ticks - DateTime.UtcNow.Ticks).TotalSeconds.ToString("#");
 }
 <style>
-    #imgdiv{
-        text-align : center;
+    #imgdiv {
+        text-align: left;
     }
 </style>
 <!DOCTYPE html>
@@ -15,46 +15,46 @@
 <html>
 <head>
     @*<meta name="viewport"> content="width=device-width" />*@
-     <title> Emotional Intelligence Quiz</title>
+    <title> Emotional Intelligence Quiz</title>
 </head>
 <body>
     <h3>Emotional Test</h3>
-    <form asp-controller="Quizs" asp-action="submit" >
-    <div>Time Remaining: <span id="minRemaining"/> : <span id="secRemaining"/></div>
-    <ol type="1">
-        @foreach (var question in ViewBag.Question)
-        {
-        <li>
-          
-            @question.Content
-            <input type="hidden" name="QuestionID" , value="@question.ID" />
-            <div id="imgdiv" style="text-align:left">
-                @{
-                    var base64 = Convert.ToBase64String(question.image);
-                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    <form asp-controller="Quizs" asp-action="submit">
+        <div>Time Remaining: <span id="minRemaining" /> : <span id="secRemaining" /></div>
+        <ol type="1">
+            @foreach (var question in ViewBag.Question)
+            {
+                <li>
 
-                <img src="@imgSrc" width="150" height="150">
-                    }
+                    @question.Content
+                    <input type="hidden" name="QuestionID" , value="@question.ID" />
+                    <div id="imgdiv">
+                        @{
+                            var base64 = Convert.ToBase64String(question.image);
+                            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
 
-            </div>
+                            <img src="@imgSrc" width="150" height="150">
+                        }
 
-            <ol type="a">
-                @foreach (var answer in question.Answer)
-                {
+                    </div>
 
-                    <li>
-                        <input type="radio" name="question_@question.ID" value="@answer.ID" />
-                        @answer.Content
-                    </li>
+                    <ol type="a">
+                        @foreach (var answer in question.Answer)
+                        {
 
-                }
-            </ol>
-        </li>
-        }
-    </ol>
-        <input type="submit" value="Submit"/>
-        </form>
-  
+                            <li>
+                                <input type="radio" name="question_@question.ID" value="@answer.ID" />
+                                @answer.Content
+                            </li>
+
+                        }
+                    </ol>
+                </li>
+            }
+        </ol>
+        <input type="submit" value="Submit" />
+    </form>
+
 </body>
 </html>
 

@@ -5,15 +5,25 @@
 
 <!DOCTYPE html>
 
-    <html>
+<html>
 <head>
-    <title>Result2</title>
+    <title>Please find the your score!!</title>
 </head>
 <body>
-    <h3>result</h3>
-   Score: @ViewBag.score = score;
+    <h3>Congratulations you've completed the test and your scores are:</h3>
+    Score: @ViewBag.score
 </body>
 </html>
+
+<div>
+    <button onclick="goBack()">Re- take the test</button>
+    </div>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
 
 
 
