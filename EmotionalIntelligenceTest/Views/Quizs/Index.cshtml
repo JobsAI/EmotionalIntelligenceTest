@@ -15,12 +15,13 @@
 <html>
 <head>
     @*<meta name="viewport"> content="width=device-width" />*@
-    <title> Emotional Intelligence Quiz</title>
+    <title> Test Your Emotional Intelligence</title>
 </head>
 <body>
-    <h3>Emotional Test</h3>
+   <h2>Emotional Intelligence Quiz</h2>
+    <h3>How well do you read other people?</h3>
     <form asp-controller="Quizs" asp-action="submit">
-        <div>Time Remaining: <span id="minRemaining" /> : <span id="secRemaining" /></div>
+        <div>Time Remaining<b>: <span id="minRemaining" /></b>m<b>: <span id="secRemaining" /></b>s</div>
         <ol type="1">
             @foreach (var question in ViewBag.Question)
             {
@@ -43,7 +44,7 @@
                         {
 
                             <li>
-                                <input type="radio" name="question_@question.ID" value="@answer.ID" />
+                                <input type="radio" class="rb" id="testRadio" name="question_@question.ID" value="@answer.ID" />
                                 @answer.Content
                             </li>
 
@@ -70,24 +71,28 @@
     function startTick() {
 
         document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
-        //document.getElementById('minRemaining').innerText = formatNumber(remSeconds / 60);
-        var _tick = setInterval(function () {
+        document.getElementById('minRemaining').innerText = parseInt(formatNumber(remSeconds / 60));
+         var _tick = setInterval(function () {
 
             if (remSeconds > 0) {
                 remSeconds = remSeconds - 1;
                 secondsCounter = secondsCounter - 1;
 
                 document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
-                //document.getElementById('minRemaining').innerText = formatNumber(remSeconds / 60);
+                document.getElementById('minRemaining').innerText = parseInt(formatNumber(remSeconds / 60));
 
                 if (secondsCounter == 0)
                     secondsCounter = 60;
             }
             else {
                 alert('Your test time has expired');
+                document.write("Your test time has expired, try again!");
                 clearInterval(_tick);
+                 location.reload();
+                
+                
             }
-
+               
         }, 1000);
     }
     startTick();
